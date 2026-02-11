@@ -44,7 +44,7 @@ $cfg['plugins'] = array_merge( $cfg['plugins'], [
 $cfg['plugins'][] = __DIR__ . '/../vendor/miraheze/phan-plugins/NoOptionalParamPlugin.php';
 
 $cfg['analyze_signature_compatibility'] = true;
-$cfg['enable_class_alias_support'] = false;
+$cfg['enable_class_alias_support'] = true;
 $cfg['enable_extended_internal_return_type_plugins'] = true;
 $cfg['error_prone_truthy_condition_detection'] = true;
 $cfg['redundant_condition_detection'] = true;
