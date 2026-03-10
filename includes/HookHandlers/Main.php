@@ -94,13 +94,13 @@ class Main implements ArticleViewHeaderHook {
 			$this->machineTranslationLanguageFetcher->getLanguageCodeMap()
 		)[$languageCode] ?? $languageCode );
 
-		$titleText = $baseTitle->getTitleValue()?->getText();
+		$titleText = $baseTitle->getText();
 		if ( $this->config->get( ConfigNames::TranslateTitle ) ) {
 			$titleCacheKey = "$cacheKey-title";
 			$titleText = $this->machineTranslationUtils->getCache( $titleCacheKey );
 			if ( $titleText === false || !$this->config->get( ConfigNames::UseJobQueue ) ) {
 				$titleText = $this->machineTranslationUtils->callTranslation(
-					$baseTitle->getTitleValue()?->getText(),
+					$baseTitle->getText(),
 					$source, $target
 				);
 
@@ -111,7 +111,7 @@ class Main implements ArticleViewHeaderHook {
 		$context = $article->getContext();
 		$out = $context->getOutput();
 
-		$languageTitle = $titleText !== '' ? $titleText : $baseTitle->getTitleValue()?->getText();
+		$languageTitle = $titleText !== '' ? $titleText : $baseTitle->getText();
 		if ( $this->config->get( ConfigNames::DisplayLanguageName ) ) {
 			// Get title text for replace (the base page title + language name)
 			$languageName = $context->msg( 'parentheses', ucfirst(
@@ -159,7 +159,7 @@ class Main implements ArticleViewHeaderHook {
 								'content' => $out->parseAsContent( $text ),
 								'source' => $source,
 								'target' => $target,
-								'titletext' => $baseTitle->getTitleValue()?->getText(),
+								'titletext' => $baseTitle->getText(),
 							]
 						)
 					);
